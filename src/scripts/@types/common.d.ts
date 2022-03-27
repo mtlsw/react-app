@@ -1,4 +1,4 @@
-interface IMediauQueryData {
+interface IMediaQueryData {
   desktop: boolean
   tablet: boolean
   mobile: boolean
