@@ -1,0 +1,11 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 100,
+  "trailingComma": "all",
+  "endOfLine": "auto",
+  "react-hooks/exhaustive-deps": false,
+  "overrides": [{ "files": "*.json" }]
+}
