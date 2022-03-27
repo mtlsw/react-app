@@ -3,10 +3,12 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import reduxStore from '.'
 
 import app from './app'
+import toast from './toast'
 import { api } from './api'
 
 const rootReducer = combineReducers({
   app,
+  toast,
   [api.reducerPath]: api.reducer,
 })
 
