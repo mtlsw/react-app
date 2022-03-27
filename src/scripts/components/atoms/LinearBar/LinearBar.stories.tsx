@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import LinearBar from '.'
+import LinearBar from './LinearBar'
 
 export default {
   title: 'components/atoms/LinearBar',
@@ -11,4 +11,7 @@ export default {
 const Template: ComponentStory<typeof LinearBar> = (args) => <LinearBar {...args} />
 
 export const Basic = Template.bind({})
-Basic.args = {}
+Basic.args = {
+  label: 'XM3 풀옵',
+  value: 72,
+}

@@ -4,6 +4,7 @@ import Style from './App.style'
 import theme from 'resources/styles/theme'
 import GlobalStyle from './resources/styles/global.style'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
+import HeaderContainer from 'scripts/containers/Header'
 import HomePage from 'scripts/pages/HomePage'
 import ToastContainer from 'scripts/containers/Toast'
 import { useAppDispatch } from 'scripts/stores/reducers'
@@ -25,6 +26,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Style.App>
+        <HeaderContainer />
         <Routes>
           <Route index element={<HomePage />} />
         </Routes>
