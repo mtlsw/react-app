@@ -19,8 +19,8 @@ const Style = {
       !isNaN(mq.maxWidth) &&
       css`
         margin: 0 auto;
-        padding: 0 16px;
-        width: 1442;
+        padding: 0;
+        width: 640px;
       `}
   `,
 }

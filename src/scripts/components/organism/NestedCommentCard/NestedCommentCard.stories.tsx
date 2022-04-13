@@ -1,31 +1,27 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import SurveyCard from '.'
+import NestedCommentCard from '.'
 
 export default {
-  title: 'components/organism/SurveyCard',
-  component: SurveyCard,
+  title: 'components/organism/NestedCommentCard',
+  component: NestedCommentCard,
   argTypes: {
     onClickCard: {
       action: 'onClickCard',
     },
   },
-} as ComponentMeta<typeof SurveyCard>
+} as ComponentMeta<typeof NestedCommentCard>
 
-const Template: ComponentStory<typeof SurveyCard> = (args) => <SurveyCard {...args} />
+const Template: ComponentStory<typeof NestedCommentCard> = (args) => <NestedCommentCard {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {
   data: {
     id: 1,
-    thumbnail: '1376585075100.jpg',
     contents: '1800만원으로 뭐삼',
-    commentCount: 24,
     registDate: new Date(),
     thumbUpCount: 240,
     userName: '물티슈',
-    voteCount: 7700,
-    votes: [],
   },
 }

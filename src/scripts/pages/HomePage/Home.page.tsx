@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import SurveyCard from 'scripts/components/organism/SurveyCard'
 import Style from './Home.page.style'
 
@@ -15,6 +16,16 @@ const mock = {
 }
 
 export default function HomePage(): JSX.Element {
+  const navigate = useNavigate()
+
+  const handleClickCard = useCallback(
+    (data: ISurveyData) => {
+      console.log(data)
+      navigate(`/${data.id}`)
+    },
+    [navigate],
+  )
+
   const handleClickThumbUp = useCallback(() => {
     console.log('handleClickThumbUp')
   }, [])
@@ -35,6 +46,7 @@ export default function HomePage(): JSX.Element {
     <Style.Contents>
       <SurveyCard
         data={mock}
+        onClickCard={handleClickCard}
         onClickThumbUp={() => handleClickThumbUp()}
         onClickThumbDown={() => handleThumbDown()}
         onClickShare={() => handleShare()}
@@ -42,6 +54,7 @@ export default function HomePage(): JSX.Element {
       />
       <SurveyCard
         data={mock}
+        onClickCard={handleClickCard}
         onClickThumbUp={() => handleClickThumbUp()}
         onClickThumbDown={() => handleThumbDown()}
         onClickShare={() => handleShare()}
@@ -49,6 +62,7 @@ export default function HomePage(): JSX.Element {
       />
       <SurveyCard
         data={mock}
+        onClickCard={handleClickCard}
         onClickThumbUp={() => handleClickThumbUp()}
         onClickThumbDown={() => handleThumbDown()}
         onClickShare={() => handleShare()}
@@ -56,6 +70,7 @@ export default function HomePage(): JSX.Element {
       />
       <SurveyCard
         data={mock}
+        onClickCard={handleClickCard}
         onClickThumbUp={() => handleClickThumbUp()}
         onClickThumbDown={() => handleThumbDown()}
         onClickShare={() => handleShare()}
@@ -63,6 +78,39 @@ export default function HomePage(): JSX.Element {
       />
       <SurveyCard
         data={mock}
+        onClickCard={handleClickCard}
+        onClickThumbUp={() => handleClickThumbUp()}
+        onClickThumbDown={() => handleThumbDown()}
+        onClickShare={() => handleShare()}
+        onClickComment={() => handleComment()}
+      />
+      <SurveyCard
+        data={mock}
+        onClickCard={handleClickCard}
+        onClickThumbUp={() => handleClickThumbUp()}
+        onClickThumbDown={() => handleThumbDown()}
+        onClickShare={() => handleShare()}
+        onClickComment={() => handleComment()}
+      />
+      <SurveyCard
+        data={mock}
+        onClickCard={handleClickCard}
+        onClickThumbUp={() => handleClickThumbUp()}
+        onClickThumbDown={() => handleThumbDown()}
+        onClickShare={() => handleShare()}
+        onClickComment={() => handleComment()}
+      />
+      <SurveyCard
+        data={mock}
+        onClickCard={handleClickCard}
+        onClickThumbUp={() => handleClickThumbUp()}
+        onClickThumbDown={() => handleThumbDown()}
+        onClickShare={() => handleShare()}
+        onClickComment={() => handleComment()}
+      />
+      <SurveyCard
+        data={mock}
+        onClickCard={handleClickCard}
         onClickThumbUp={() => handleClickThumbUp()}
         onClickThumbDown={() => handleThumbDown()}
         onClickShare={() => handleShare()}

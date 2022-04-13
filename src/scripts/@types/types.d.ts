@@ -19,3 +19,22 @@ interface ISurveyData {
   thumbUpCount: number
   commentCount: number
 }
+
+interface ICommentData {
+  id: number
+  thumbnail: string
+  userName: string
+  registDate: Date
+  contents: string
+  thumbUpCount: number
+  commentCount: number
+  nestedCommentId: number
+}
+
+interface INestedCommentData {
+  id: number
+  userName: string
+  registDate: Date
+  contents: string
+  thumbUpCount: number
+}

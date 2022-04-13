@@ -18,7 +18,7 @@ export default function SearchTextField(props: ISearchTextFieldProps): JSX.Eleme
 
   return (
     <Style.Component>
-      <TextField
+      <Style.SearchTextField
         value={keyword}
         setValue={setKeyword}
         postData={<IconButton icon="search" onClick={handleClickSearch} />}
@@ -29,5 +29,7 @@ export default function SearchTextField(props: ISearchTextFieldProps): JSX.Eleme
 
 const Style = {
   Component: styled.div``,
-  SearchTextField: styled.input``,
+  SearchTextField: styled(TextField)`
+    width: 100%;
+  `,
 }

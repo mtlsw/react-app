@@ -16,7 +16,9 @@ export default function HeaderContainer() {
   return (
     <Style.Container>
       <Select options={categoryList} value={category} />
-      <SearchTextField onClickSearch={setKeyword} />
+      <Style.SearchTextField>
+        <SearchTextField onClickSearch={setKeyword} />
+      </Style.SearchTextField>
       <IconButton
         icon={isOnAlarm ? 'alarmOn' : 'alarmOff'}
         onClick={() => setIsOnAlarm(!isOnAlarm)}
@@ -28,5 +30,9 @@ export default function HeaderContainer() {
 const Style = {
   Container: styled.div`
     display: flex;
+    gap: 5px;
+  `,
+  SearchTextField: styled.div`
+    flex-grow: 1;
   `,
 }

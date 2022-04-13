@@ -1,19 +1,19 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import SurveyCard from '.'
+import CommentCard from '.'
 
 export default {
-  title: 'components/organism/SurveyCard',
-  component: SurveyCard,
+  title: 'components/organism/CommentCard',
+  component: CommentCard,
   argTypes: {
     onClickCard: {
       action: 'onClickCard',
     },
   },
-} as ComponentMeta<typeof SurveyCard>
+} as ComponentMeta<typeof CommentCard>
 
-const Template: ComponentStory<typeof SurveyCard> = (args) => <SurveyCard {...args} />
+const Template: ComponentStory<typeof CommentCard> = (args) => <CommentCard {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {
@@ -25,7 +25,6 @@ Basic.args = {
     registDate: new Date(),
     thumbUpCount: 240,
     userName: '물티슈',
-    voteCount: 7700,
-    votes: [],
+    nestedCommentId: 1,
   },
 }
