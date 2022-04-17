@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import styled, { css } from 'styled-components'
 
 interface ITextFieldProps {
@@ -20,7 +20,7 @@ export default function TextField(props: ITextFieldProps): JSX.Element {
 
   return (
     <Style.Component>
-      <Style.TextField type="text" onChange={handleChange} {...inputProps} />
+      <Style.TextField type="text" onChange={handleChange} {...inputProps} spellCheck={false} />
       {postData}
     </Style.Component>
   )
@@ -30,5 +30,10 @@ const Style = {
   Component: styled.div`
     display: flex;
   `,
-  TextField: styled.input``,
+  TextField: styled.input`
+    padding: 0 10px;
+    border: none;
+    color: ${({ theme }) => theme.color_text};
+    background: ${({ theme }) => theme.color_background};
+  `,
 }

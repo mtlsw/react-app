@@ -20,7 +20,7 @@ export default function CommentCard(props: ICommentCardProps): JSX.Element {
 
   return (
     <Style.Component onClick={handleClickCard}>
-      <ProfileThumbnail src={data.thumbnail} />
+      <ProfileThumbnail src={data.thumbnail} size="m" />
       <Style.Contents>
         <Style.HeaderWrapper>
           {data.userName}

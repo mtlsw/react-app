@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import { ReactComponent as IconSearch } from 'resources/assets/svg/icon-search.svg'
 import { ReactComponent as IconAlarmOn } from 'resources/assets/svg/icon-alarm-on.svg'
@@ -27,8 +27,16 @@ interface IIconButtonProps {
 export default React.memo(function IconButton(props: IIconButtonProps): JSX.Element {
   const { icon, onClick } = props
 
+  const handleClick = useCallback(
+    (e) => {
+      e.stopPropagation()
+      onClick()
+    },
+    [onClick],
+  )
+
   return (
-    <Style.Component onClick={onClick}>
+    <Style.Component onClick={handleClick}>
       {icon === 'search' && <IconSearch />}
       {icon === 'alarmOn' && <IconAlarmOn />}
       {icon === 'alarmOff' && <IconAlarmOff />}
@@ -44,11 +52,20 @@ export default React.memo(function IconButton(props: IIconButtonProps): JSX.Elem
 
 const Style = {
   Component: styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 5px;
+    outline: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 
     svg {
-      height: 20px;
-      width: 20px;
+      height: 1rem;
+      width: 1rem;
+
+      fill: ${({ theme }) => theme.color_text};
     }
   `,
 }

@@ -6,6 +6,13 @@ import ProfileThumbnail from './ProfileThumbnail'
 export default {
   title: 'components/atoms/ProfileThumbnail',
   component: ProfileThumbnail,
+  argTypes: {
+    size: {
+      options: ['l', 'm', 's'],
+      control: { type: 'radio' },
+      defaultValue: 'm',
+    },
+  },
 } as ComponentMeta<typeof ProfileThumbnail>
 
 const Template: ComponentStory<typeof ProfileThumbnail> = (args) => <ProfileThumbnail {...args} />

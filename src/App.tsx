@@ -25,7 +25,7 @@ function App() {
   }, [location])
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme.dark}>
       <GlobalStyle />
       <Style.App>
         <LayoutContainer>

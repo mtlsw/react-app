@@ -16,6 +16,6 @@ const Template: ComponentStory<typeof RadioField> = (args) => <RadioField {...ar
 export const Basic = Template.bind({})
 Basic.args = {
   selected: 0,
-  children: ['one', 'two'],
+  children: ['one', 'two', 'THREE', 'FOUR'],
   group: 'story',
 }

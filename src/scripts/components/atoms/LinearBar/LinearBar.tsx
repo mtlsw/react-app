@@ -22,7 +22,7 @@ export default function LinearBar(props: ILinearBarProps): JSX.Element {
 const Style = {
   Component: styled.div`
     width: 100%;
-    padding: 3px;
+    padding: 2px;
     border: 1px solid black;
     border-radius: 5px;
   `,
@@ -30,11 +30,11 @@ const Style = {
     position: relative;
   `,
   Bar: styled.div<{ width: number }>`
-    height: 30px;
+    height: 22px;
     max-width: 100%;
-    border-radius: 5px;
+    border-radius: 3px;
     transition: width 0.3s ease-in-out;
-    background-color: blueviolet;
+    background-color: ${({ theme }) => theme.color_primary};
     ${({ width }) =>
       css`
         width: ${width}%;
@@ -44,6 +44,8 @@ const Style = {
     position: absolute;
     display: flex;
     align-items: center;
+    padding: 0 10px;
+    line-height: 18px;
     top: 0;
     bottom: 0;
     left: 0;

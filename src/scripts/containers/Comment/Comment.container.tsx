@@ -4,7 +4,7 @@ import Select from 'scripts/components/atoms/Select'
 import SearchTextField from 'scripts/components/molecule/SearchTextField/SearchTextField'
 import styled, { css } from 'styled-components'
 
-export default function HeaderContainer() {
+export default function CommentContainer() {
   const categoryList = useMemo(() => {
     return [{ label: '자동차', value: 'car' }] as ISelectOption[]
   }, [])
@@ -30,9 +30,6 @@ export default function HeaderContainer() {
 const Style = {
   Container: styled.div`
     display: flex;
-    background: ${({ theme }) => theme.color_background_light};
-    padding: 6px;
-    border-radius: 3px;
     gap: 5px;
   `,
   SearchTextField: styled.div`

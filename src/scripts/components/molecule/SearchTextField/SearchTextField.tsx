@@ -31,5 +31,7 @@ const Style = {
   Component: styled.div``,
   SearchTextField: styled(TextField)`
     width: 100%;
+    height: 38px;
+    border-radius: 4px;
   `,
 }

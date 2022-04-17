@@ -13,7 +13,7 @@ const withThemeAndRouter = (Story, context) => {
   return (
     <MemoryRouter>
       <StoreProvider store={Store}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme.dark}>
           <GlobalStyle />
           <Story {...context} />
         </ThemeProvider>
