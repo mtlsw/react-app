@@ -3,38 +3,43 @@ interface ISelectOption {
   readonly label: string
 }
 
+interface IUser {
+  name: string
+  thumbnail?: string
+}
+
 interface IVoteData {
+  id: string
   label: string
-  voted?: number
+  thumbnail: string
+  voted: number
 }
 
 interface ISurveyData {
-  id: number
-  thumbnail: string
-  userName: string
-  registDate: Date
+  id: string
+  thumbnail?: string
+  user: IUser
+  created: Date
   contents: string
-  voteCount?: number
   votes: IVoteData[]
-  thumbUpCount: number
+  likeCount: number
   commentCount: number
+  currentUserReaction?: boolean // true - thumbUp, false - thumbDown
 }
 
 interface ICommentData {
-  id: number
-  thumbnail: string
-  userName: string
-  registDate: Date
+  id: string
+  user: IUser
+  created: Date
   contents: string
-  thumbUpCount: number
-  commentCount: number
-  nestedCommentId: number
+  likeCount: number
+  nestedCommentCount: number
 }
 
 interface INestedCommentData {
-  id: number
-  userName: string
-  registDate: Date
+  id: string
+  user: IUser
+  created: Date
   contents: string
-  thumbUpCount: number
+  likeCount: number
 }

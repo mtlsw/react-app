@@ -19,16 +19,22 @@ export const Basic = Template.bind({})
 Basic.args = {
   data: [
     {
+      id: 'a',
       label: 'one',
       voted: 10,
+      thumbnail: '',
     },
     {
+      id: 'b',
       label: 'two',
       voted: 20,
+      thumbnail: '',
     },
     {
+      id: 'c',
       label: 'three',
       voted: 30,
+      thumbnail: '',
     },
   ],
 }

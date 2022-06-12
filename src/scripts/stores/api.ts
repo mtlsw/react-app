@@ -5,7 +5,7 @@ import QueryString from 'query-string'
 const staggeredBaseQueryWithBailOut = retry(
   async (args: string | FetchArgs, api, extraOptions) => {
     const result = await fetchBaseQuery({
-      baseUrl: 'https://pokeapi.co/api/v2/',
+      baseUrl: 'https://mushroom-acrikjqlsa-du.a.run.app/api/',
       credentials: 'include',
       prepareHeaders: (headers, { getState }) => {
         headers.set('content-type', 'application/json;charset=UTF-8')
@@ -29,10 +29,24 @@ export const api = createApi({
   // refetchOnMountOrArgChange: true,
   baseQuery: staggeredBaseQueryWithBailOut,
   endpoints: (builder) => ({
-    getPokemon: builder.query<string, string>({
-      query: (name) => `/pokemon/${name}`,
+    getSurveys: builder.query<IGetSurveysResponse, IGetSurveysRequest>({
+      query: () => `/surveys/`,
+    }),
+    getSurvey: builder.query<IGetSurveyResponse, IGetSurveyRequest>({
+      query: (param) => `/surveys/${param.id}`,
+    }),
+    getComments: builder.query<IGetCommentsResponse, IGetCommentsRequest>({
+      query: (param) => `/surveys/${param.id}/comments`,
+    }),
+    getNestedComments: builder.query<IGetNestedCommentsResponse, IGetNestedCommentsRequest>({
+      query: (param) => `/surveys/${param.id}/comments/${param.commentId}`,
     }),
   }),
 })
 
-export const { useGetPokemonQuery } = api
+export const {
+  useGetSurveysQuery,
+  useGetSurveyQuery,
+  useGetCommentsQuery,
+  useGetNestedCommentsQuery,
+} = api

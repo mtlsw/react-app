@@ -23,7 +23,7 @@ const Style = {
   Component: styled.div`
     width: 100%;
     padding: 2px;
-    border: 1px solid black;
+    border: 1px solid ${({ theme }) => theme.color_card_border_hover};
     border-radius: 5px;
   `,
   InnerWrapper: styled.div`
@@ -44,6 +44,9 @@ const Style = {
     position: absolute;
     display: flex;
     align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     padding: 0 10px;
     line-height: 18px;
     top: 0;

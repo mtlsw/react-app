@@ -13,7 +13,7 @@ html, body {
 
 #root {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   color: ${({ theme }) => theme.color_text};
   background-color: ${({ theme }) => theme.color_background};
 }

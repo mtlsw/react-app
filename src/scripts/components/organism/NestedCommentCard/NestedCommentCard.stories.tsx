@@ -18,10 +18,10 @@ const Template: ComponentStory<typeof NestedCommentCard> = (args) => <NestedComm
 export const Basic = Template.bind({})
 Basic.args = {
   data: {
-    id: 1,
-    contents: '1800만원으로 뭐삼',
-    registDate: new Date(),
-    thumbUpCount: 240,
-    userName: '물티슈',
+    id: 'a',
+    user: { name: '이상훈TV' },
+    created: new Date(),
+    contents: '와 진짜 박진감 넘치네~\n테슬라 오토파일럿 너무 좋구만요',
+    likeCount: 154,
   },
 }

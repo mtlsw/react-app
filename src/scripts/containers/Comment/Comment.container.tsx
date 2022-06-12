@@ -1,28 +1,38 @@
-import React, { useMemo, useState } from 'react'
-import IconButton from 'scripts/components/atoms/IconButton'
-import Select from 'scripts/components/atoms/Select'
-import SearchTextField from 'scripts/components/molecule/SearchTextField/SearchTextField'
+import React, { useCallback, useMemo, useState } from 'react'
+import CommentCard from 'scripts/components/organism/CommentCard'
 import styled, { css } from 'styled-components'
+import NestedCommentList from '../NestedCommentList'
 
-export default function CommentContainer() {
-  const categoryList = useMemo(() => {
-    return [{ label: '자동차', value: 'car' }] as ISelectOption[]
+interface ICommentContainerProps {
+  data: ICommentData
+}
+
+export default function CommentContainer(props: ICommentContainerProps): JSX.Element {
+  const { data } = props
+
+  const handleClickThumbUp = useCallback(() => {
+    //
   }, [])
 
-  const [category, setCategory] = useState(categoryList[0])
-  const [keyword, setKeyword] = useState('')
-  const [isOnAlarm, setIsOnAlarm] = useState(true)
+  const handleClickThumbDown = useCallback(() => {
+    //
+  }, [])
+
+  const handleSubmitComment = useCallback(() => {
+    //
+  }, [])
 
   return (
     <Style.Container>
-      <Select options={categoryList} value={category} />
-      <Style.SearchTextField>
-        <SearchTextField onClickSearch={setKeyword} />
-      </Style.SearchTextField>
-      <IconButton
-        icon={isOnAlarm ? 'alarmOn' : 'alarmOff'}
-        onClick={() => setIsOnAlarm(!isOnAlarm)}
+      <CommentCard
+        data={data}
+        onClickThumbUp={handleClickThumbUp}
+        onClickThumbDown={handleClickThumbDown}
+        onSubmitComment={handleSubmitComment}
       />
+      {data.nestedCommentCount > 0 && (
+        <NestedCommentList commentId={data.id} nestedCommentCount={data.nestedCommentCount} />
+      )}
     </Style.Container>
   )
 }
@@ -30,9 +40,7 @@ export default function CommentContainer() {
 const Style = {
   Container: styled.div`
     display: flex;
-    gap: 5px;
-  `,
-  SearchTextField: styled.div`
-    flex-grow: 1;
+    flex-direction: column;
+    padding-bottom: 16px;
   `,
 }

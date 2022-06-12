@@ -20,6 +20,7 @@ export default function SearchTextField(props: ISearchTextFieldProps): JSX.Eleme
     <Style.Component>
       <Style.SearchTextField
         value={keyword}
+        placeholder={'검색'}
         setValue={setKeyword}
         postData={<IconButton icon="search" onClick={handleClickSearch} />}
       />

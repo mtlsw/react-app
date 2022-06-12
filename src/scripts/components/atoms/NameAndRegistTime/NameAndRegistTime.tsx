@@ -12,7 +12,7 @@ export default function LinearBar(props: ILinearBarProps): JSX.Element {
   return (
     <Style.Component>
       {name}
-      <Style.Date>{date.toLocaleDateString()}</Style.Date>
+      <Style.Date>{new Date(date).toLocaleDateString()}</Style.Date>
     </Style.Component>
   )
 }

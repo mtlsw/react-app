@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import IconButton from 'scripts/components/atoms/IconButton'
 import NameAndRegistTime from 'scripts/components/atoms/NameAndRegistTime/NameAndRegistTime'
 import ProfileThumbnail from 'scripts/components/atoms/ProfileThumbnail'
@@ -20,6 +20,10 @@ export default function SurveyCard(props: ISurveyCardProps): JSX.Element {
 
   const [checkedIndex, setCheckedIndex] = useState<number>()
 
+  useEffect(() => {
+    console.log('check ', checkedIndex)
+  }, [checkedIndex])
+
   const handleClickCard = useCallback(
     (e) => {
       e.stopPropagation()
@@ -28,35 +32,30 @@ export default function SurveyCard(props: ISurveyCardProps): JSX.Element {
     [onClickCard],
   )
 
+  const voteCount = useMemo(() => {
+    return data.votes.reduce((acc, obj) => {
+      return acc + (obj.voted || 0)
+    }, 0)
+  }, [data])
+
   return (
     <Style.Component onClick={handleClickCard}>
-      <ProfileThumbnail src={data.thumbnail} size="l" />
+      {/* <ProfileThumbnail src={data.thumbnail} size="l" /> */}
+      <ProfileThumbnail
+        src={
+          'https://image.musinsa.com/mfile_s01/2021/11/26/baf76429a02a9aab640eaee3baa787eb164756.jpg'
+        }
+        size="l"
+      />
       <Style.Contents>
-        <NameAndRegistTime name={data.userName} date={data.registDate} />
+        <NameAndRegistTime name={data.user.name} date={data.created} />
         <Style.DetailWrapper>{data.contents}</Style.DetailWrapper>
-        <Style.VoteCount>{data.voteCount}명 투표</Style.VoteCount>
+        <Style.VoteCount>{voteCount}명 투표</Style.VoteCount>
         <Style.Vote>
-          <SurveyResult
-            selected={checkedIndex}
-            onChange={setCheckedIndex}
-            data={[
-              {
-                label: 'one',
-                voted: 10,
-              },
-              {
-                label: 'two',
-                voted: 20,
-              },
-              {
-                label: 'three',
-                voted: 30,
-              },
-            ]}
-          />
+          <SurveyResult selected={checkedIndex} onChange={setCheckedIndex} data={data.votes} />
         </Style.Vote>
         <Style.buttonWrapper>
-          <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.thumbUpCount}
+          <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.likeCount}
           <IconButton icon="thumbDown" onClick={onClickThumbDown} />
           <IconButton icon="share" onClick={onClickShare} />
           <IconButton icon="comment" onClick={onClickComment} /> {data.commentCount}
@@ -88,6 +87,7 @@ const Style = {
   DetailWrapper: styled.div`
     margin: 5px 0;
     font-size: 1.1rem;
+    white-space: pre-wrap;
   `,
   VoteCount: styled.div`
     font-size: 0.9rem;

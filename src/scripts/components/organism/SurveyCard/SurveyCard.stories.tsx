@@ -18,14 +18,13 @@ const Template: ComponentStory<typeof SurveyCard> = (args) => <SurveyCard {...ar
 export const Basic = Template.bind({})
 Basic.args = {
   data: {
-    id: 1,
+    id: 'a',
     thumbnail: '1376585075100.jpg',
     contents: '1800만원으로 뭐삼',
     commentCount: 24,
-    registDate: new Date(),
-    thumbUpCount: 240,
-    userName: '물티슈',
-    voteCount: 7700,
+    created: new Date(),
+    likeCount: 240,
+    user: { name: '물티슈' },
     votes: [],
   },
 }

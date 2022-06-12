@@ -1,32 +1,33 @@
 import React, { useCallback, useState } from 'react'
 import IconButton from 'scripts/components/atoms/IconButton'
+import ProfileThumbnail from 'scripts/components/atoms/ProfileThumbnail'
 import styled, { css } from 'styled-components'
 
 interface INestedCommentCardProps {
   data: INestedCommentData
-  onClickCard: (data: INestedCommentData) => void
   onClickThumbUp: () => void
   onClickThumbDown: () => void
-  onClickComment: () => void
 }
 
 export default function NestedCommentCard(props: INestedCommentCardProps): JSX.Element {
-  const { data, onClickCard, onClickThumbUp, onClickThumbDown, onClickComment } = props
-
-  const handleClickCard = useCallback(() => {
-    onClickCard(data)
-  }, [onClickCard])
+  const { data, onClickThumbUp, onClickThumbDown } = props
 
   return (
-    <Style.Component onClick={handleClickCard}>
+    <Style.Component>
+      <ProfileThumbnail
+        src={
+          'https://image.musinsa.com/mfile_s01/2021/11/26/baf76429a02a9aab640eaee3baa787eb164756.jpg'
+        }
+        size="s"
+      />
       <Style.Contents>
         <Style.HeaderWrapper>
-          {data.userName}
-          {data.registDate.toLocaleDateString()}
+          {data.user.name}
+          {new Date(data.created).toLocaleDateString()}
         </Style.HeaderWrapper>
         <Style.DetailWrapper>{data.contents}</Style.DetailWrapper>
         <Style.buttonWrapper>
-          <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.thumbUpCount}
+          <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.likeCount}
           <IconButton icon="thumbDown" onClick={onClickThumbDown} />
         </Style.buttonWrapper>
       </Style.Contents>
@@ -37,21 +38,21 @@ export default function NestedCommentCard(props: INestedCommentCardProps): JSX.E
 const Style = {
   Component: styled.div`
     display: flex;
-    margin: 5px;
-    padding: 20px;
-    background-color: ${({ theme }) => theme.color_card_background};
-    border: 1px solid ${({ theme }) => theme.color_card_border};
-    border-radius: 10px;
-    :hover {
-      background-color: ${({ theme }) => theme.color_card_background_hover};
-    }
+    gap: 16px;
   `,
   Contents: styled.div`
     flex-grow: 1;
   `,
-  HeaderWrapper: styled.div``,
+  HeaderWrapper: styled.div`
+    margin-bottom: 2px;
+  `,
   DetailWrapper: styled.div``,
   VoteCount: styled.div``,
   Vote: styled.div``,
-  buttonWrapper: styled.div``,
+  buttonWrapper: styled.div`
+    display: flex;
+    font-size: 0.8rem;
+    align-items: center;
+    color: ${({ theme }) => theme.color_text_dark};
+  `,
 }

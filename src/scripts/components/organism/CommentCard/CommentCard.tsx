@@ -1,37 +1,51 @@
 import React, { useCallback, useState } from 'react'
 import IconButton from 'scripts/components/atoms/IconButton'
 import ProfileThumbnail from 'scripts/components/atoms/ProfileThumbnail'
+import CommentField from 'scripts/components/molecule/CommentField'
 import styled, { css } from 'styled-components'
 
 interface ICommentCardProps {
   data: ICommentData
-  onClickCard: (data: ICommentData) => void
   onClickThumbUp: () => void
   onClickThumbDown: () => void
-  onClickComment: () => void
+  onSubmitComment: (contents: string) => void
 }
 
 export default function CommentCard(props: ICommentCardProps): JSX.Element {
-  const { data, onClickCard, onClickThumbUp, onClickThumbDown, onClickComment } = props
+  const { data, onClickThumbUp, onClickThumbDown, onSubmitComment } = props
 
-  const handleClickCard = useCallback(() => {
-    onClickCard(data)
-  }, [onClickCard])
+  const [showSumbitForm, setShowSubmitForm] = useState(false)
+
+  const handleClickComment = useCallback(() => {
+    setShowSubmitForm(true)
+  }, [])
+
+  const handleClickSubmit = useCallback((contents: string) => {
+    // 숨기는건 성공 후.
+    onSubmitComment(contents)
+    setShowSubmitForm(false)
+  }, [])
 
   return (
-    <Style.Component onClick={handleClickCard}>
-      <ProfileThumbnail src={data.thumbnail} size="m" />
+    <Style.Component>
+      <ProfileThumbnail
+        src={
+          'https://image.musinsa.com/mfile_s01/2021/11/26/baf76429a02a9aab640eaee3baa787eb164756.jpg'
+        }
+        size="m"
+      />
       <Style.Contents>
         <Style.HeaderWrapper>
-          {data.userName}
-          {data.registDate.toLocaleDateString()}
+          {data.user.name}
+          {new Date(data.created).toLocaleDateString()}
         </Style.HeaderWrapper>
         <Style.DetailWrapper>{data.contents}</Style.DetailWrapper>
         <Style.buttonWrapper>
-          <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.thumbUpCount}
+          <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.likeCount}
           <IconButton icon="thumbDown" onClick={onClickThumbDown} />
-          <IconButton icon="comment" onClick={onClickComment} /> {data.commentCount}
+          <IconButton icon="comment" onClick={handleClickComment} />
         </Style.buttonWrapper>
+        {showSumbitForm && <CommentField onClickSubmit={handleClickSubmit} />}
       </Style.Contents>
     </Style.Component>
   )
@@ -40,21 +54,21 @@ export default function CommentCard(props: ICommentCardProps): JSX.Element {
 const Style = {
   Component: styled.div`
     display: flex;
-    margin: 5px;
-    padding: 20px;
-    background-color: ${({ theme }) => theme.color_card_background};
-    border: 1px solid ${({ theme }) => theme.color_card_border};
-    border-radius: 10px;
-    :hover {
-      background-color: ${({ theme }) => theme.color_card_background_hover};
-    }
+    gap: 16px;
   `,
   Contents: styled.div`
     flex-grow: 1;
   `,
-  HeaderWrapper: styled.div``,
+  HeaderWrapper: styled.div`
+    margin-bottom: 2px;
+  `,
   DetailWrapper: styled.div``,
   VoteCount: styled.div``,
   Vote: styled.div``,
-  buttonWrapper: styled.div``,
+  buttonWrapper: styled.div`
+    display: flex;
+    font-size: 0.8rem;
+    align-items: center;
+    color: ${({ theme }) => theme.color_text_dark};
+  `,
 }
