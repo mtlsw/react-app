@@ -1,19 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
-import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducers'
-import rootSaga from './sagas'
 import { api } from './api'
+import { apiGoogle } from './api.google'
 
 const store = () => {
-  const sagaMiddleware = createSagaMiddleware()
   const initStore = configureStore({
     reducer: rootReducer,
     devTools: true,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(api.middleware).concat(sagaMiddleware),
+      getDefaultMiddleware().concat(api.middleware, apiGoogle.middleware),
   })
 
-  sagaMiddleware.run(rootSaga)
   return initStore
 }
 

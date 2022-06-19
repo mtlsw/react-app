@@ -43,3 +43,29 @@ interface INestedCommentData {
   contents: string
   likeCount: number
 }
+
+/**
+ * Google oAuth
+ */
+interface IGoogleOAuth {
+  access_token: string
+  expires_in: number
+  scope: string
+  state: string
+  token_type: string
+}
+
+interface IGoogleOauthState {
+  type: string
+  surveyId: string
+  commentId: string
+}
+
+interface IGoogleUserInfoProfile {
+  id: string
+  name: string
+  given_name: string
+  family_name: string
+  picture: string
+  locale: string
+}

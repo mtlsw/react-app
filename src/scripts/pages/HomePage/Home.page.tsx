@@ -70,7 +70,16 @@ export default function HomePage(): JSX.Element {
         onClickComment={() => handleComment()}
       />
     ))
-  }, [surveyData, surveyError, surveyIsFetching])
+  }, [
+    handleClickCard,
+    handleClickThumbUp,
+    handleComment,
+    handleShare,
+    handleThumbDown,
+    surveyData,
+    surveyError,
+    surveyIsFetching,
+  ])
 
   return (
     <Style.Contents>

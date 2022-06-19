@@ -20,6 +20,10 @@ export default function CommentCard(props: ICommentCardProps): JSX.Element {
     setShowSubmitForm(true)
   }, [])
 
+  const handleToLogin = useCallback(() => {
+    console.log('to login')
+  }, [])
+
   const handleClickSubmit = useCallback((contents: string) => {
     // 숨기는건 성공 후.
     onSubmitComment(contents)
@@ -45,7 +49,13 @@ export default function CommentCard(props: ICommentCardProps): JSX.Element {
           <IconButton icon="thumbDown" onClick={onClickThumbDown} />
           <IconButton icon="comment" onClick={handleClickComment} />
         </Style.buttonWrapper>
-        {showSumbitForm && <CommentField onClickSubmit={handleClickSubmit} />}
+        {showSumbitForm && (
+          <CommentField
+            user={undefined}
+            toLoginPage={handleToLogin}
+            onClickSubmit={handleClickSubmit}
+          />
+        )}
       </Style.Contents>
     </Style.Component>
   )

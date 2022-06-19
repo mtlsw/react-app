@@ -74,6 +74,7 @@ const Style = {
     background-color: ${({ theme }) => theme.color_card_background};
     border: 1px solid ${({ theme }) => theme.color_card_border};
     border-radius: 10px;
+    cursor: pointer;
 
     :hover {
       background-color: ${({ theme }) => theme.color_card_background_hover};

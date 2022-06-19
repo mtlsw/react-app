@@ -4,6 +4,8 @@ import CommentCard from 'scripts/components/organism/CommentCard'
 import styled, { css } from 'styled-components'
 import CommentField from 'scripts/components/molecule/CommentField'
 import SearchTextField from 'scripts/components/molecule/SearchTextField'
+import useGoogleOAuth from 'scripts/hooks/useGoogleOAuth'
+import { useAppSelector } from 'scripts/stores/reducers'
 
 const mock: IGetCommentsResponse = {
   currPage: 0,
@@ -61,6 +63,9 @@ interface ICommentListContainerProps {
 export default function CommentListContainer(props: ICommentListContainerProps): JSX.Element {
   const { surveyId } = props
 
+  const googleOAuth = useGoogleOAuth()
+  const { userProfile } = useAppSelector((rootStore) => rootStore.auth)
+
   const categoryList = useMemo(() => {
     return [{ label: '자동차', value: 'car' }] as ISelectOption[]
   }, [])
@@ -73,12 +78,30 @@ export default function CommentListContainer(props: ICommentListContainerProps):
     alert(contents)
   }, [])
 
+  const handleClickLogin = useCallback(() => {
+    googleOAuth.login(surveyId)
+  }, [googleOAuth, surveyId])
+
+  const handleClickLogout = useCallback(() => {
+    googleOAuth.logout()
+  }, [googleOAuth])
+
   return (
     <Style.Container>
-      <Style.HeaderWrapper>댓글 {mock.totalCount}개</Style.HeaderWrapper>
+      <Style.HeaderWrapper>
+        <h5>댓글 {mock.totalCount}개</h5>
+        <Style.OrderControl>드랍다운 여기에</Style.OrderControl>
+      </Style.HeaderWrapper>
       <Style.CommentField>
-        <CommentField onClickSubmit={handleSubmitComment} />
-        <SearchTextField onClickSearch={handleClickSearch} />
+        <CommentField
+          user={undefined}
+          toLoginPage={handleClickLogin}
+          onClickSubmit={handleSubmitComment}
+        />
+        {/* <SearchTextField onClickSearch={handleClickSearch} /> */}
+        {JSON.stringify(userProfile)}
+        <button onClick={handleClickLogin}>login</button>
+        <button onClick={handleClickLogout}>logout</button>
       </Style.CommentField>
       <div>
         {mock.data.map((d) => (
@@ -91,6 +114,7 @@ export default function CommentListContainer(props: ICommentListContainerProps):
 
 const Style = {
   Container: styled.div`
+    margin: 24px 0;
     display: flex;
     gap: 5px;
     flex-direction: column;
@@ -98,7 +122,14 @@ const Style = {
   HeaderWrapper: styled.div`
     height: 24px;
     margin-bottom: 2px;
+    display: flex;
+    gap: 32px;
+    h5 {
+      margin: 0;
+      font-size: 16px;
+    }
   `,
+  OrderControl: styled.div``,
   CommentField: styled.div``,
   SearchTextField: styled.div`
     flex-grow: 1;

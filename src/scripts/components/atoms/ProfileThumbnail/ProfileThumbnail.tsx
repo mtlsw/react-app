@@ -2,14 +2,14 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 interface IProfileThumbnailProps {
-  src: string
+  src?: string
   size: 'l' | 'm' | 's'
 }
 
 export default function ProfileThumbnail(props: IProfileThumbnailProps): JSX.Element {
   const { src, size } = props
 
-  return <Styled.Component src={src} alt="thumbnail" size={size} />
+  return <Styled.Component src={src || ''} alt="thumbnail" size={size} />
 }
 
 const Styled = {

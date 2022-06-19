@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 import { FetchArgs } from '@reduxjs/toolkit/dist/query/fetchBaseQuery'
-import QueryString from 'query-string'
 
 const staggeredBaseQueryWithBailOut = retry(
   async (args: string | FetchArgs, api, extraOptions) => {
