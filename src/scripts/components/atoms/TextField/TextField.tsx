@@ -29,8 +29,10 @@ export default function TextField(props: ITextFieldProps): JSX.Element {
 const Style = {
   Component: styled.div`
     display: flex;
+    width: 100%;
   `,
   TextField: styled.input`
+    flex-grow: 1;
     padding: 0 10px;
     border: none;
     color: ${({ theme }) => theme.color_text};

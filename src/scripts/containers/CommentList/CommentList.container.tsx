@@ -71,20 +71,16 @@ export default function CommentListContainer(props: ICommentListContainerProps):
   }, [])
 
   const handleSubmitComment = useCallback((contents: string) => {
-    alert(contents)
+    alert(`comment - ${contents}`)
   }, [])
 
   const handleClickSearch = useCallback((contents: string) => {
-    alert(contents)
+    alert(`search - ${contents}`)
   }, [])
 
   const handleClickLogin = useCallback(() => {
     googleOAuth.login(surveyId)
   }, [googleOAuth, surveyId])
-
-  const handleClickLogout = useCallback(() => {
-    googleOAuth.logout()
-  }, [googleOAuth])
 
   return (
     <Style.Container>
@@ -94,18 +90,15 @@ export default function CommentListContainer(props: ICommentListContainerProps):
       </Style.HeaderWrapper>
       <Style.CommentField>
         <CommentField
-          user={undefined}
+          user={userProfile}
           toLoginPage={handleClickLogin}
           onClickSubmit={handleSubmitComment}
         />
-        {/* <SearchTextField onClickSearch={handleClickSearch} /> */}
-        {JSON.stringify(userProfile)}
-        <button onClick={handleClickLogin}>login</button>
-        <button onClick={handleClickLogout}>logout</button>
+        <SearchTextField onClickSearch={handleClickSearch} />
       </Style.CommentField>
       <div>
         {mock.data.map((d) => (
-          <CommentCointainer key={`comment-${d.id}`} data={d} />
+          <CommentCointainer key={`comment-${d.id}`} surveyId={surveyId} data={d} />
         ))}
       </div>
     </Style.Container>

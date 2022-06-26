@@ -6,22 +6,21 @@ import styled, { css } from 'styled-components'
 
 interface ICommentCardProps {
   data: ICommentData
+  userProfile?: IUser
   onClickThumbUp: () => void
   onClickThumbDown: () => void
   onSubmitComment: (contents: string) => void
+  handleToLogin: () => void
 }
 
 export default function CommentCard(props: ICommentCardProps): JSX.Element {
-  const { data, onClickThumbUp, onClickThumbDown, onSubmitComment } = props
+  const { data, userProfile, onClickThumbUp, onClickThumbDown, onSubmitComment, handleToLogin } =
+    props
 
   const [showSumbitForm, setShowSubmitForm] = useState(false)
 
   const handleClickComment = useCallback(() => {
     setShowSubmitForm(true)
-  }, [])
-
-  const handleToLogin = useCallback(() => {
-    console.log('to login')
   }, [])
 
   const handleClickSubmit = useCallback((contents: string) => {
@@ -51,7 +50,7 @@ export default function CommentCard(props: ICommentCardProps): JSX.Element {
         </Style.buttonWrapper>
         {showSumbitForm && (
           <CommentField
-            user={undefined}
+            user={userProfile}
             toLoginPage={handleToLogin}
             onClickSubmit={handleClickSubmit}
           />

@@ -5,7 +5,7 @@ interface ISelectOption {
 
 interface IUser {
   name: string
-  thumbnail?: string
+  picture?: string
 }
 
 interface IVoteData {
