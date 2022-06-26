@@ -6,6 +6,7 @@ import CommentField from 'scripts/components/molecule/CommentField'
 import SearchTextField from 'scripts/components/molecule/SearchTextField'
 import useGoogleOAuth from 'scripts/hooks/useGoogleOAuth'
 import { useAppSelector } from 'scripts/stores/reducers'
+import Select from 'scripts/components/atoms/Select'
 
 const mock: IGetCommentsResponse = {
   currPage: 0,
@@ -63,12 +64,19 @@ interface ICommentListContainerProps {
 export default function CommentListContainer(props: ICommentListContainerProps): JSX.Element {
   const { surveyId } = props
 
+  const orderList = useMemo(() => {
+    return [
+      { label: '최신 순', value: 'latest' },
+      { label: '좋아요 순', value: 'like' },
+      { label: '싫어요 순', value: 'unlike' },
+      ,
+    ] as ISelectOption[]
+  }, [])
+
   const googleOAuth = useGoogleOAuth()
   const { userProfile } = useAppSelector((rootStore) => rootStore.auth)
 
-  const categoryList = useMemo(() => {
-    return [{ label: '자동차', value: 'car' }] as ISelectOption[]
-  }, [])
+  const [order, setOrder] = useState(orderList[0])
 
   const handleSubmitComment = useCallback((contents: string) => {
     alert(`comment - ${contents}`)
@@ -86,7 +94,15 @@ export default function CommentListContainer(props: ICommentListContainerProps):
     <Style.Container>
       <Style.HeaderWrapper>
         <h5>댓글 {mock.totalCount}개</h5>
-        <Style.OrderControl>드랍다운 여기에</Style.OrderControl>
+        <Style.OrderControl>
+          <Select
+            options={orderList}
+            value={order}
+            onChange={(index) => {
+              setOrder(orderList[index])
+            }}
+          />
+        </Style.OrderControl>
       </Style.HeaderWrapper>
       <Style.CommentField>
         <CommentField
