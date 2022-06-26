@@ -13,5 +13,8 @@ const Template: ComponentStory<typeof Menu> = (args) => <Menu {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {
-  children: [<Menu.MenuItem>test 1</Menu.MenuItem>, <Menu.MenuItem>test 2</Menu.MenuItem>],
+  children: [
+    <Menu.MenuItem key="test-1">test 1</Menu.MenuItem>,
+    <Menu.MenuItem key="test-2">test 2</Menu.MenuItem>,
+  ],
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import Style from './App.style'
 import theme from 'resources/styles/theme'
@@ -24,6 +24,7 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
+    console.log(location.pathname)
     window.scrollTo(0, 0)
   }, [location])
 
