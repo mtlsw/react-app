@@ -22,6 +22,7 @@ interface ISurveyData {
   created: Date
   contents: string
   votes: IVoteData[]
+  currentUserVote?: number
   likeCount: number
   commentCount: number
   currentUserReaction?: boolean // true - thumbUp, false - thumbDown
