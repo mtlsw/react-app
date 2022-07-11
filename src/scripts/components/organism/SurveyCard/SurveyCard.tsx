@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import IconButton from 'scripts/components/atoms/IconButton'
 import NameAndRegistTime from 'scripts/components/atoms/NameAndRegistTime/NameAndRegistTime'
 import ProfileThumbnail from 'scripts/components/atoms/ProfileThumbnail'
-import SurveyResult from 'scripts/components/molecule/SurveyResult'
+import Survey from 'scripts/containers/Survey'
 import styled, { css } from 'styled-components'
 
 interface ISurveyCardProps {
@@ -17,12 +17,6 @@ interface ISurveyCardProps {
 export default function SurveyCard(props: ISurveyCardProps): JSX.Element {
   const { data, onClickCard, onClickThumbUp, onClickThumbDown, onClickShare, onClickComment } =
     props
-
-  const [checkedIndex, setCheckedIndex] = useState<number>()
-
-  useEffect(() => {
-    console.log('check ', checkedIndex)
-  }, [checkedIndex])
 
   const handleClickCard = useCallback(
     (e) => {
@@ -50,10 +44,7 @@ export default function SurveyCard(props: ISurveyCardProps): JSX.Element {
       <Style.Contents>
         <NameAndRegistTime name={data.user.name} date={data.created} />
         <Style.DetailWrapper>{data.contents}</Style.DetailWrapper>
-        <Style.VoteCount>{voteCount}명 투표</Style.VoteCount>
-        <Style.Vote>
-          <SurveyResult selected={checkedIndex} onChange={setCheckedIndex} data={data.votes} />
-        </Style.Vote>
+        <Survey votes={data.votes} voted={data.currentUserVote} />
         <Style.buttonWrapper>
           <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.likeCount}
           <IconButton icon="thumbDown" onClick={onClickThumbDown} />

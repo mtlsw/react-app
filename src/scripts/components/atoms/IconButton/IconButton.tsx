@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { ReactComponent as IconSearch } from 'resources/assets/svg/icon-search.svg'
 import { ReactComponent as IconAlarmOn } from 'resources/assets/svg/icon-alarm-on.svg'
 import { ReactComponent as IconAlarmOff } from 'resources/assets/svg/icon-alarm-off.svg'
+import { ReactComponent as IconArrowLeft } from 'resources/assets/svg/icon-angle-left.svg'
 import { ReactComponent as IconThumbUp } from 'resources/assets/svg/icon-thumbs-up.svg'
 import { ReactComponent as IconThumbUpFilled } from 'resources/assets/svg/icon-thumbs-up-filled.svg'
 import { ReactComponent as IconThumbDown } from 'resources/assets/svg/icon-thumbs-down.svg'
@@ -15,6 +16,10 @@ interface IIconButtonProps {
     | 'search'
     | 'alarmOn'
     | 'alarmOff'
+    | 'arrowLeft'
+    | 'arrowRight'
+    | 'arrowUp'
+    | 'arrowDown'
     | 'thumbUp'
     | 'thumbUpFilled'
     | 'thumbDown'
@@ -40,6 +45,10 @@ export default React.memo(function IconButton(props: IIconButtonProps): JSX.Elem
       {icon === 'search' && <IconSearch />}
       {icon === 'alarmOn' && <IconAlarmOn />}
       {icon === 'alarmOff' && <IconAlarmOff />}
+      {icon === 'arrowLeft' && <IconArrowLeft />}
+      {icon === 'arrowRight' && <IconArrowLeft style={{ transform: `rotate(180deg)` }} />}
+      {icon === 'arrowUp' && <IconArrowLeft style={{ transform: `rotate(90deg)` }} />}
+      {icon === 'arrowDown' && <IconArrowLeft style={{ transform: `rotate(270deg)` }} />}
       {icon === 'thumbUp' && <IconThumbUp />}
       {icon === 'thumbUpFilled' && <IconThumbUpFilled />}
       {icon === 'thumbDown' && <IconThumbDown />}

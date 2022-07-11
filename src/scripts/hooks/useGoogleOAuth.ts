@@ -12,7 +12,7 @@ const useGoogleOAuth = () => {
    * surveyId, commentId 가 전달되고 root 페이지에서 처리 해주어야 함
    */
   const login = useCallback((surveyId?: string, commentId?: string) => {
-    window.location.href =
+    const target =
       `https://accounts.google.com/o/oauth2/v2/auth?` +
       `&scope=https%3A//www.googleapis.com/auth/userinfo.profile` +
       `&include_granted_scopes=true` +
@@ -22,6 +22,8 @@ const useGoogleOAuth = () => {
       }` +
       `&redirect_uri=${window.location.origin}` +
       `&client_id=${process.env.REACT_APP_CLIENT_ID}`
+
+    window.location.href = target
   }, [])
 
   /**

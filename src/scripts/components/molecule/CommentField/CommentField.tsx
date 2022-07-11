@@ -22,8 +22,8 @@ export default function CommentTextField(props: ICommentTextFieldProps): JSX.Ele
 
   return (
     <Style.Component>
-      <ProfileThumbnail src={user?.thumbnail} size="m" />
-      <Style.CommentTextField
+      <ProfileThumbnail src={user?.picture} size="m" />
+      <TextField
         placeholder="공개댓글 추가"
         value={contents}
         setValue={setContents}
@@ -34,10 +34,8 @@ export default function CommentTextField(props: ICommentTextFieldProps): JSX.Ele
 }
 
 const Style = {
-  Component: styled.div``,
-  CommentTextField: styled(TextField)`
-    width: 100%;
-    height: 38px;
-    border-radius: 4px;
+  Component: styled.div`
+    display: flex;
+    gap: 8px;
   `,
 }
