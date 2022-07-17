@@ -10,6 +10,7 @@ import { ReactComponent as IconThumbDown } from 'resources/assets/svg/icon-thumb
 import { ReactComponent as IconThumbDownFilled } from 'resources/assets/svg/icon-thumbs-down-filled.svg'
 import { ReactComponent as IconShare } from 'resources/assets/svg/icon-share.svg'
 import { ReactComponent as IconComment } from 'resources/assets/svg/icon-comment.svg'
+import { ReactComponent as IconUser } from 'resources/assets/svg/icon-user.svg'
 
 interface IIconButtonProps {
   icon:
@@ -26,6 +27,7 @@ interface IIconButtonProps {
     | 'thumbDownFilled'
     | 'share'
     | 'comment'
+    | 'user'
   onClick: () => void
 }
 
@@ -55,6 +57,7 @@ export default React.memo(function IconButton(props: IIconButtonProps): JSX.Elem
       {icon === 'thumbDownFilled' && <IconThumbDownFilled />}
       {icon === 'share' && <IconShare />}
       {icon === 'comment' && <IconComment />}
+      {icon === 'user' && <IconUser />}
     </Style.Component>
   )
 })
@@ -70,12 +73,19 @@ const Style = {
     background: transparent;
     border: none;
     cursor: pointer;
+    border-radius: 9999px;
 
     svg {
       height: 1rem;
       width: 1rem;
 
-      fill: ${({ theme }) => theme.color_text};
+      fill: ${({ theme }) => theme.color_text_dark};
+    }
+
+    :hover {
+      svg {
+        fill: ${({ theme }) => theme.color_text};
+      }
     }
   `,
 }

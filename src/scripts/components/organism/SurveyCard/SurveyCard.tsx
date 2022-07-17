@@ -23,7 +23,7 @@ export default function SurveyCard(props: ISurveyCardProps): JSX.Element {
       e.stopPropagation()
       onClickCard(data)
     },
-    [onClickCard],
+    [data, onClickCard],
   )
 
   const voteCount = useMemo(() => {
@@ -45,12 +45,12 @@ export default function SurveyCard(props: ISurveyCardProps): JSX.Element {
         <NameAndRegistTime name={data.user.name} date={data.created} />
         <Style.DetailWrapper>{data.contents}</Style.DetailWrapper>
         <Survey votes={data.votes} voted={data.currentUserVote} />
-        <Style.buttonWrapper>
+        <Style.ButtonWrapper>
           <IconButton icon="thumbUp" onClick={onClickThumbUp} /> {data.likeCount}
           <IconButton icon="thumbDown" onClick={onClickThumbDown} />
           <IconButton icon="share" onClick={onClickShare} />
           <IconButton icon="comment" onClick={onClickComment} /> {data.commentCount}
-        </Style.buttonWrapper>
+        </Style.ButtonWrapper>
       </Style.Contents>
     </Style.Component>
   )
@@ -88,7 +88,7 @@ const Style = {
     margin: 5px 0;
   `,
   Vote: styled.div``,
-  buttonWrapper: styled.div`
+  ButtonWrapper: styled.div`
     display: flex;
     margin-top: 16px;
     font-size: 0.9rem;

@@ -31,6 +31,7 @@ const Style = {
     display: flex;
     width: 100%;
     align-items: center;
+    gap: 1rem;
   `,
   TextField: styled.input`
     flex-grow: 1;

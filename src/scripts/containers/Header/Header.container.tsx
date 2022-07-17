@@ -22,7 +22,7 @@ export default function HeaderContainer() {
 
   // const [category, setCategory] = useState(categoryList[0])
   const [keyword, setKeyword] = useState('')
-  const [isOnAlarm, setIsOnAlarm] = useState(true)
+  // const [isOnAlarm, setIsOnAlarm] = useState(true)
 
   useEffect(() => {
     console.log('keyword', keyword)
@@ -58,7 +58,7 @@ export default function HeaderContainer() {
         />
       )
     } else {
-      return <button onClick={handleClickLogin}>로그인</button>
+      return <IconButton icon={'user'} onClick={handleClickLogin} />
     }
   }, [userProfile, handleClickLogout, handleClickLogin])
 
@@ -69,10 +69,10 @@ export default function HeaderContainer() {
       <Style.SearchTextField>
         <SearchTextField onClickSearch={setKeyword} />
       </Style.SearchTextField>
-      <IconButton
+      {/* <IconButton
         icon={isOnAlarm ? 'alarmOn' : 'alarmOff'}
         onClick={() => setIsOnAlarm(!isOnAlarm)}
-      />
+      /> */}
       {renderSessionControl}
     </Style.Container>
   )
