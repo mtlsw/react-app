@@ -4,18 +4,6 @@ import SurveyCard from 'scripts/components/organism/SurveyCard'
 import { useGetSurveysQuery } from 'scripts/stores/api'
 import Style from './Home.page.style'
 
-const mock = {
-  id: 1,
-  thumbnail: '1376585075100.jpg',
-  contents: '1800만원으로 뭐삼',
-  commentCount: 24,
-  registDate: new Date(),
-  thumbUpCount: 240,
-  userName: '물티슈',
-  voteCount: 7700,
-  votes: [],
-}
-
 export default function HomePage(): JSX.Element {
   const navigate = useNavigate()
 

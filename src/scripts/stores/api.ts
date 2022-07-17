@@ -46,6 +46,27 @@ export const api = createApi({
       query: (param) => `/surveys/${param.id}/comments/${param.commentId}`,
     }),
 
+    postComment: builder.mutation<void, IPostCommentRequest>({
+      query: (param) => ({
+        url: `/surveys/${param.id}/comment`,
+        method: 'POST',
+        body: { contents: param.contents },
+      }),
+      extraOptions: {
+        maxRetries: 1,
+      },
+    }),
+    postNestedComment: builder.mutation<void, IPostNestedCommentRequest>({
+      query: (param) => ({
+        url: `/surveys/${param.id}/comment/${param.commentId}`,
+        method: 'POST',
+        body: { contents: param.contents },
+      }),
+      extraOptions: {
+        maxRetries: 1,
+      },
+    }),
+
     postLogin: builder.mutation<IPostUserResponse, void>({
       query: () => ({
         url: `/surveys/user`,
@@ -63,5 +84,9 @@ export const {
   useGetSurveyQuery,
   useGetCommentsQuery,
   useGetNestedCommentsQuery,
+
+  usePostCommentMutation,
+  usePostNestedCommentMutation,
+
   usePostLoginMutation,
 } = api

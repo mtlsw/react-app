@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import IconButton from 'scripts/components/atoms/IconButton'
 import NameAndRegistTime from 'scripts/components/atoms/NameAndRegistTime/NameAndRegistTime'
 import ProfileThumbnail from 'scripts/components/atoms/ProfileThumbnail'
@@ -25,12 +25,6 @@ export default function SurveyCard(props: ISurveyCardProps): JSX.Element {
     },
     [data, onClickCard],
   )
-
-  const voteCount = useMemo(() => {
-    return data.votes.reduce((acc, obj) => {
-      return acc + (obj.voted || 0)
-    }, 0)
-  }, [data])
 
   return (
     <Style.Component onClick={handleClickCard}>

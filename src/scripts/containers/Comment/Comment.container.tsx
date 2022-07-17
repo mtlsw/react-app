@@ -1,8 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback } from 'react'
 import CommentCard from 'scripts/components/organism/CommentCard'
 import useGoogleOAuth from 'scripts/hooks/useGoogleOAuth'
+import { usePostNestedCommentMutation } from 'scripts/stores/api'
 import { useAppSelector } from 'scripts/stores/reducers'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import NestedCommentList from '../NestedCommentList'
 
 interface ICommentContainerProps {
@@ -16,6 +17,8 @@ export default function CommentContainer(props: ICommentContainerProps): JSX.Ele
   const googleOAuth = useGoogleOAuth()
   const { userProfile } = useAppSelector((rootStore) => rootStore.auth)
 
+  const [postNestedComment, result] = usePostNestedCommentMutation()
+
   const handleClickThumbUp = useCallback(() => {
     //
   }, [])
@@ -24,10 +27,14 @@ export default function CommentContainer(props: ICommentContainerProps): JSX.Ele
     //
   }, [])
 
-  const handleSubmitComment = useCallback((contents: string) => {
-    //
-    alert(`nested comment - ${contents}`)
-  }, [])
+  const handleSubmitComment = useCallback(
+    (contents: string) => {
+      if (userProfile) {
+        postNestedComment({ id: surveyId, commentId: data.id, contents })
+      }
+    },
+    [userProfile, postNestedComment, surveyId, data.id],
+  )
 
   const handleToLogin = useCallback(() => {
     googleOAuth.login(surveyId, data.id)

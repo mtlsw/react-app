@@ -19,7 +19,7 @@ type IGetSurveyResponse = ISurveyData
 interface IGetCommentsRequest {
   id: string
   keyword?: string
-  order: 'thumbUp' | 'thumbDown' | 'latest'
+  order?: 'thumbUp' | 'thumbDown' | 'latest'
   page?: number
 }
 
@@ -55,6 +55,17 @@ interface IGetNestedCommentsResponse {
   created: Date
   contents: string
   thumbUpCount: number
+}
+
+interface IPostCommentRequest {
+  id: string
+  contents: string
+}
+
+interface IPostNestedCommentRequest {
+  id: string
+  commentId: string
+  contents: string
 }
 
 interface IPostVoteRequest {
