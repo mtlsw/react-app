@@ -9,14 +9,19 @@ const useMediaQuery = () => {
   const isRetina = useMediaQueryInResponsive({ query: '(min-resolution: 2dpx)' })
 
   return useMemo(() => {
+    console.log({
+      desktop: isBigScreen,
+      tablet: isTablet,
+      mobile: isMobile,
+      retina: isRetina,
+      portrait: isPortrait,
+    })
     return {
       desktop: isBigScreen,
       tablet: isTablet,
       mobile: isMobile,
       retina: isRetina,
       portrait: isPortrait,
-      maxWidth: isBigScreen ? 1442 : isTablet ? 1441 : 320,
-      minWidth: isBigScreen ? 1442 : isTablet ? 321 : 320,
     } as IMediaQueryData
   }, [isBigScreen, isTablet, isMobile, isRetina, isPortrait])
 }

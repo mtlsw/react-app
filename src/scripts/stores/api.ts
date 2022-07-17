@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 import { FetchArgs } from '@reduxjs/toolkit/dist/query/fetchBaseQuery'
+import Cookies from 'js-cookie'
 
 const staggeredBaseQueryWithBailOut = retry(
   async (args: string | FetchArgs, api, extraOptions) => {
@@ -8,6 +9,10 @@ const staggeredBaseQueryWithBailOut = retry(
       credentials: 'include',
       prepareHeaders: (headers, { getState }) => {
         headers.set('content-type', 'application/json;charset=UTF-8')
+
+        if (Cookies.get('access_token')) {
+          headers.set('Authorization', `Bearer ${Cookies.get('access_token')}`)
+        }
         return headers
       },
     })(args, api, extraOptions)
@@ -40,6 +45,16 @@ export const api = createApi({
     getNestedComments: builder.query<IGetNestedCommentsResponse, IGetNestedCommentsRequest>({
       query: (param) => `/surveys/${param.id}/comments/${param.commentId}`,
     }),
+
+    postLogin: builder.mutation<IPostUserResponse, void>({
+      query: () => ({
+        url: `/surveys/user`,
+        method: 'POST',
+      }),
+      extraOptions: {
+        maxRetries: 1,
+      },
+    }),
   }),
 })
 
@@ -48,4 +63,5 @@ export const {
   useGetSurveyQuery,
   useGetCommentsQuery,
   useGetNestedCommentsQuery,
+  usePostLoginMutation,
 } = api

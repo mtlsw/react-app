@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import IconButton from 'scripts/components/atoms/IconButton'
 import NameAndRegistTime from 'scripts/components/atoms/NameAndRegistTime/NameAndRegistTime'
 import ProfileThumbnail from 'scripts/components/atoms/ProfileThumbnail'
 import Survey from 'scripts/containers/Survey'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 interface ISurveyCardProps {
   data: ISurveyData
@@ -64,6 +64,7 @@ const Style = {
     gap: 16px;
     background-color: ${({ theme }) => theme.color_card_background};
     border: 1px solid ${({ theme }) => theme.color_card_border};
+    box-shadow: 0.5px 0.5px 5px 0.5px ${({ theme }) => theme.color_background};
     border-radius: 10px;
     cursor: pointer;
 
@@ -78,7 +79,7 @@ const Style = {
   HeaderWrapper: styled.div``,
   DetailWrapper: styled.div`
     margin: 5px 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     white-space: pre-wrap;
   `,
   VoteCount: styled.div`

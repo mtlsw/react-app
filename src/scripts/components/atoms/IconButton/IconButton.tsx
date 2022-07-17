@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { ReactComponent as IconSearch } from 'resources/assets/svg/icon-search.svg'
 import { ReactComponent as IconAlarmOn } from 'resources/assets/svg/icon-alarm-on.svg'
 import { ReactComponent as IconAlarmOff } from 'resources/assets/svg/icon-alarm-off.svg'
@@ -62,9 +62,10 @@ export default React.memo(function IconButton(props: IIconButtonProps): JSX.Elem
 const Style = {
   Component: styled.button`
     display: flex;
+    height: 2rem;
+    width: 2rem;
     align-items: center;
     justify-content: center;
-    padding: 5px;
     outline: none;
     background: transparent;
     border: none;

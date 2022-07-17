@@ -9,7 +9,10 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  min-width: 640px;
+  width: 100%;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  min-width: 20rem;
 }
 
 #root {

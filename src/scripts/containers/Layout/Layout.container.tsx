@@ -15,12 +15,22 @@ export default function LayoutContainer(props: ILayoutContainerProps) {
 
 const Style = {
   Container: styled.div<{ mq: IMediaQueryData }>`
-    ${({ mq }) =>
-      !isNaN(mq.maxWidth) &&
-      css`
-        margin: 0 auto;
-        padding: 0;
-        width: 640px;
-      `}
+    margin: 0 auto;
+    max-width: 40rem;
+    padding: 0;
+    overflow: scroll;
+    /* ${({ mq }) => {
+      if (mq.mobile) {
+        return css`
+          max-width: 320px;
+        `
+      } else if (mq.tablet) {
+        return css``
+      } else if (mq.desktop) {
+        return css`
+          max-width: 640px;
+        `
+      }
+    }} */
   `,
 }

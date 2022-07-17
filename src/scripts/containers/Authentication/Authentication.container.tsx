@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'scripts/stores/reducers'
 import { SET_TOKEN, SET_USER_PROFILE } from 'scripts/stores/auth'
 import { useLazyGetUserInfoQuery } from 'scripts/stores/api.google'
+import { usePostLoginMutation } from 'scripts/stores/api'
 
 interface IAuthenticationContainerProps {
   children?: React.ReactNode
@@ -16,6 +17,8 @@ export default function AuthenticationContainer(props: IAuthenticationContainerP
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { token: STORE_TOKEN } = useAppSelector((rootStore) => rootStore.auth)
+
+  const [postUser, result] = usePostLoginMutation()
 
   const [triggerGetUserInfo, { isLoading: isLoadingUserInfo, data: dataUserInfo }] =
     useLazyGetUserInfoQuery()
@@ -69,7 +72,9 @@ export default function AuthenticationContainer(props: IAuthenticationContainerP
       const cookieToken = Cookies.get('access_token')
       dispatch(SET_TOKEN(cookieToken))
     }
-  }, [dispatch, navigate])
+
+    postUser()
+  }, [dispatch, navigate, postUser])
 
   /**
    * token state 가 변경 되었을 때 사용자 데이터 API 호출

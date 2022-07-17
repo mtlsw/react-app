@@ -30,6 +30,7 @@ const Style = {
   Component: styled.div`
     display: flex;
     width: 100%;
+    align-items: center;
   `,
   TextField: styled.input`
     flex-grow: 1;

@@ -29,10 +29,12 @@ export default function SearchTextField(props: ISearchTextFieldProps): JSX.Eleme
 }
 
 const Style = {
-  Component: styled.div``,
+  Component: styled.div`
+    height: 40px;
+  `,
   SearchTextField: styled(TextField)`
     width: 100%;
-    height: 38px;
+    height: 40px;
     border-radius: 4px;
   `,
 }

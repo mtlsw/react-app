@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect } from 'react'
-import { ThemeProvider } from 'styled-components'
-import Style from './App.style'
+import React, { useEffect } from 'react'
+import styled, { ThemeProvider } from 'styled-components'
 import theme from 'resources/styles/theme'
 import GlobalStyle from './resources/styles/global.style'
 import { Routes, Route, useLocation } from 'react-router-dom'
@@ -47,6 +46,10 @@ function App() {
       <ToastContainer />
     </ThemeProvider>
   )
+}
+
+const Style = {
+  App: styled.div``,
 }
 
 export default App

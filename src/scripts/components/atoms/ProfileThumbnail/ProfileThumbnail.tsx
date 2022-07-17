@@ -18,7 +18,7 @@ export default function ProfileThumbnail(props: IProfileThumbnailProps): JSX.Ele
     if (!!popover) {
       setIsPopoverOpen(!isPopoverOpen)
     }
-  }, [isPopoverOpen])
+  }, [isPopoverOpen, popover])
 
   return (
     <Styled.Component>

@@ -61,3 +61,7 @@ interface IPostVoteRequest {
   id: string
   voteId: string
 }
+
+interface IPostUserResponse {
+  id: string
+}

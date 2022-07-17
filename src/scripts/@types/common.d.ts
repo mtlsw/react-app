@@ -4,6 +4,4 @@ interface IMediaQueryData {
   mobile: boolean
   retina: boolean
   portrait: boolean
-  maxWidth: number
-  minWidth: number
 }
